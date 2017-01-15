@@ -111,6 +111,7 @@ public class DB {
         return mDB.query(DB_TABLE_DETAILED, null, null, null, null, null, null);
     }
 
+    // get all data from table DB_TABLE_FOR_CHECK
     public Cursor getAllDataForCheckTable() {
         return mDB.query(DB_TABLE_FOR_CHECK, null, null, null, null, null, null);
     }
@@ -226,7 +227,7 @@ public class DB {
         Cursor cursorD = mDB.query(DB_TABLE_DETAILED, new String[]{COLUMN_MONTH, COLUMN_MONTH_INFO}, null, null, null, null, null);
         if (cursorD != null) {
             if (cursorD.moveToFirst()) {
-                for(int i=0; i<monthDateD.length; i++) {
+                for (int i = 0; i < monthDateD.length; i++) {
                     do {
                         cv_updateD.put(COLUMN_MONTH, monthDateD[i]);
                         cv_updateD.put(COLUMN_MONTH_INFO, monthInfoD[i]);
@@ -243,7 +244,7 @@ public class DB {
         Cursor cursorD = mDB.query(DB_TABLE_DETAILED, new String[]{COLUMN_YEAR, COLUMN_YEAR_INFO}, null, null, null, null, null);
         if (cursorD != null) {
             if (cursorD.moveToFirst()) {
-                for(int i=0; i<yearDateD.length; i++) {
+                for (int i = 0; i < yearDateD.length; i++) {
                     do {
                         cv_updateD.put(COLUMN_YEAR, yearDateD[i]);
                         cv_updateD.put(COLUMN_YEAR_INFO, yearInfoD[i]);
@@ -263,6 +264,15 @@ public class DB {
         cv_update.put(COLUMN_YEAR, Calendar.YEAR);
         String where = COLUMN_ID + "=" + 1;
         mDB.update(DB_TABLE_FOR_CHECK, cv_update, where, null);
+    }
+
+    public void addRecordCheckTable() {
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TODAY_DATE, Calendar.DAY_OF_MONTH);
+        cv.put(COLUMN_WEEK, Calendar.WEEK_OF_YEAR);
+        cv.put(COLUMN_MONTH, Calendar.MONTH);
+        cv.put(COLUMN_YEAR, Calendar.YEAR);
+        mDB.update(DB_TABLE_FOR_CHECK, cv, null, null);
     }
 
     // add record to DB_TABLE_GENERAL
@@ -339,11 +349,6 @@ public class DB {
             }
 
             db.execSQL(DB_FOR_CHECK_CREATE);
-            cv.put(COLUMN_TODAY_DATE, 0);
-            cv.put(COLUMN_WEEK, 0);
-            cv.put(COLUMN_MONTH, 0);
-            cv.put(COLUMN_YEAR, 0);
-            db.insert(DB_FOR_CHECK_CREATE, null, cv);
 
         }
 
