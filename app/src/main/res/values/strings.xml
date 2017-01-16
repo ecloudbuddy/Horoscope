@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Horoscope</string>
     <string name="aries_name">Овен</string>
+    <string name="title_activity_nd">NDActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
