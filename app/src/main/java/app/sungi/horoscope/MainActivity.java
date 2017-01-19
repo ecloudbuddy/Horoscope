@@ -56,18 +56,19 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void setupToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("TabbedCoordinatorLayout");
+        getSupportActionBar().setTitle("Horoscope");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new TabFragment(), "Tab 1");
-        adapter.addFrag(new TabFragment(), "Tab 2");
-        adapter.addFrag(new TabFragment(), "Tab 3");
+        adapter.addFrag(new TabFragment(), "На вчера");
+        adapter.addFrag(new TabFragment(), "На сегодня");
+        adapter.addFrag(new TabFragment(), "На завтра");
 
         viewPager.setAdapter(adapter);
     }
