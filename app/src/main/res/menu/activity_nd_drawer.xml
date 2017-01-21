@@ -3,37 +3,35 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Зодиакальный гороскоп" />
-    </group>
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Китайский гороскоп" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Японский гороскоп" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Гороскоп древних Майя" />
+            android:id="@+id/zodiac_horo"
+            android:icon="@drawable/ic_star"
+            android:title="@string/zodiac_horoscope" />
 
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Гороскоп друидов" />
+            android:id="@+id/china_horo"
+            android:icon="@drawable/ic_signs_china"
+            android:title="@string/China_horoscope" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Кельтский гороскоп" />
+            android:id="@+id/japan_horo"
+            android:icon="@drawable/ic_japan"
+            android:title="@string/Japan_horoscope" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Зороастрийский гороскоп" />
+            android:id="@+id/maya_horo"
+            android:icon="@drawable/ic_maya_pyramid"
+            android:title="@string/Maya_horoscope" />
+
+        <item
+            android:id="@+id/druid_horo"
+            android:icon="@drawable/ic_druid"
+            android:title="@string/Druid_horoscope" />
+        <item
+            android:id="@+id/celtik_horo"
+            android:icon="@drawable/ic_shapes_celtik"
+            android:title="@string/Celtik_horoscope" />
+        <item
+            android:id="@+id/zoroastro_horo"
+            android:icon="@drawable/ic_zoroastra"
+            android:title="@string/Zoroastro_horoscope" />
     </group>
 
     <item android:title="Communicate">
