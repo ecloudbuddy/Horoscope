@@ -3,21 +3,23 @@ package app.sungi.horoscope;
 /**
  * Created by Sungi on 16.01.2017.
  */
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.*;
+import java.util.List;
 
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
+class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
 
-    List<String> mListData;
+    private List<Zodiac> zodiacList;
 
-    public ListAdapter(List<String> mListData) {
-        this.mListData = mListData;
+    ListAdapter(List<Zodiac> zodiacList) {
+        this.zodiacList = zodiacList;
     }
 
     @Override
@@ -28,23 +30,31 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
-        myViewHolder.title.setText(mListData.get(i));
+    public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
+        Zodiac zodiac = zodiacList.get(position);
+        myViewHolder.signName.setText(zodiac.getSignName());
+        myViewHolder.signDate.setText(zodiac.getSignDate());
+        myViewHolder.signInfo.setText(zodiac.getSignInfo());
+        myViewHolder.signImage.setImageResource(Integer.parseInt(String.valueOf(zodiac.getSignIcon())));
     }
 
     @Override
     public int getItemCount() {
-        return mListData == null ? 0 : mListData.size();
+        return zodiacList == null ? 0 : zodiacList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
+        TextView signName, signDate, signInfo;
+        ImageView signImage;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
 
-            title = (TextView) itemView.findViewById(R.id.listitem_name);
+            signName = (TextView) itemView.findViewById(R.id.sign_name);
+            signDate = (TextView) itemView.findViewById(R.id.sign_date);
+            signInfo = (TextView) itemView.findViewById(R.id.sign_info);
+            signImage = (ImageView) itemView.findViewById(R.id.sign_photo);
         }
     }
 
