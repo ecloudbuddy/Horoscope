@@ -1,4 +1,5 @@
-package app.sungi.horoscope;
+package app.sungi.horoscope.activities;
+
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -6,39 +7,31 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import app.sungi.horoscope.R;
+import app.sungi.horoscope.fragment_sign.TabFragmentMonth;
+import app.sungi.horoscope.fragment_sign.TabFragmentWeek;
+import app.sungi.horoscope.fragment_sign.TabFragmentYear;
+
+public class OneSignActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_one_sign);
 
         setupToolbar();
 
         setupViewPager();
 
         setupCollapsingToolbar();
-
-        setupDrawer();
-
-    }
-
-    private void setupDrawer() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
     }
 
     private void setupCollapsingToolbar() {
@@ -65,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new TabFragment(), "На вчера");
-        adapter.addFrag(new TabFragment(), "На сегодня");
-        adapter.addFrag(new TabFragment(), "На завтра");
+        OneSignActivity.ViewPagerAdapter adapter = new OneSignActivity.ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new TabFragmentWeek(), "На неделю");
+        adapter.addFrag(new TabFragmentMonth(), "На месяц");
+        adapter.addFrag(new TabFragmentYear(), "На год");
 
         viewPager.setAdapter(adapter);
     }
+
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {
 

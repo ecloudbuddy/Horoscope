@@ -8,6 +8,7 @@ public class Zodiac {
 
     private String name, date, info;
     private int icon;
+    private int name1, date1;
 
     public Zodiac() {
     }
@@ -15,6 +16,12 @@ public class Zodiac {
     public Zodiac(String name, String date, String info, int icon) {
         this.name = name;
         this.date = date;
+        this.info = info;
+        this.icon = icon;
+    }
+    public Zodiac(int name1, int date1, String info, int icon) {
+        this.name1 = name1;
+        this.date1 = date1;
         this.info = info;
         this.icon = icon;
     }

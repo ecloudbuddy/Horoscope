@@ -14,11 +14,11 @@ import android.widget.TextView;
 import java.util.List;
 
 
-class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
 
     private List<Zodiac> zodiacList;
 
-    ListAdapter(List<Zodiac> zodiacList) {
+    public ListAdapter(List<Zodiac> zodiacList) {
         this.zodiacList = zodiacList;
     }
 

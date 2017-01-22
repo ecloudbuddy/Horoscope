@@ -14,6 +14,30 @@
     <string name="Druid_horoscope">Гороскоп друидов</string>
     <string name="Celtik_horoscope">Кельтский гороскоп</string>
     <string name="Zoroastro_horoscope">Зороастрийский гороскоп</string>
+    <string name="aries">Овен</string>
+    <string name="taurus">Телец</string>
+    <string name="gemini">Близнецы</string>
+    <string name="cancer">Рак</string>
+    <string name="leo">Лев</string>
+    <string name="virgo">Дева</string>
+    <string name="libra">Весы</string>
+    <string name="scorpionus">Скорпион</string>
+    <string name="sagittarius">Стрелец</string>
+    <string name="capricorn">Козерог</string>
+    <string name="aquarius">Водолей</string>
+    <string name="pisces">Рыбы</string>
+    <string name="aries_date">Март 21 - Апрель 20</string>
+    <string name="taurus_date">Апрель 21 - Май 21</string>
+    <string name="gemini_date">Май 21 - Июнь 21</string>
+    <string name="cancer_date">Июнь 22 - Июль 22</string>
+    <string name="leo_date">Июль 23 - Август 23</string>
+    <string name="virgo_date">Август 24 - Сентябрь 23</string>
+    <string name="libra_date">Сентябрь 24 - Октябрь 23</string>
+    <string name="scorpionus_date">Октябрь 24 - Ноябрь 22</string>
+    <string name="sagittarius_date">Ноябрь 23 - Декабрь 21</string>
+    <string name="capricorn_date">Декабрь 22 - Январь 20</string>
+    <string name="aquarius_date">Январь 21 - Февраль 19</string>
+    <string name="pisces_date">Февраль 20 - Март 20</string>
 
 
     <!--<string name="aries">Овен</string>-->
