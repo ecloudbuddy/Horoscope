@@ -1,7 +1,7 @@
 package app.sungi.horoscope.fragments;
 
 /**
- * Created by Julia on 16.01.2017.
+ * Created by Sungi on 16.01.2017.
  */
 
 import android.content.Intent;
@@ -29,6 +29,7 @@ public class TabFragmentYesterday extends Fragment {
 
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
+    private static final String LOG_TAG = "myLogsFragment";
 
     String[] nameItems = {"Овен", "Телец", "Близнецы",
             "Рак", "Лев", "Дева",
@@ -64,28 +65,28 @@ public class TabFragmentYesterday extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        zAdapter = new ListAdapter(zodiacList);
+        recyclerView.setAdapter(zAdapter);
+        prepareZodiacData();
+
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Zodiac zodiac = zodiacList.get(position);
-                Toast.makeText(getActivity(), zodiac.getSignName() + " is selected successfully", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(getActivity(), OneSignActivity.class);
+                intent.putExtra("SELECTED_ZODIAC_SIGN", zodiac.getSignName());
                 startActivity(intent);
-
             }
 
             @Override
             public void onLongClick(View view, int position) {
-
+                Zodiac zodiac = zodiacList.get(position);
+                Toast.makeText(getActivity(), zodiac.getSignName() + " is selected successfully", Toast.LENGTH_SHORT).show();
             }
         }));
 
 
-        zAdapter = new ListAdapter(zodiacList);
-        recyclerView.setAdapter(zAdapter);
-        prepareZodiacData();
         return view;
     }
 

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,16 @@ public class TabFragmentWeek extends Fragment {
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        String signName = getArguments().getString("SIGN");
+        Log.d("myLogssssssssssssss", signName);
+    }
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_list_rv);
@@ -47,7 +57,7 @@ public class TabFragmentWeek extends Fragment {
                 "\n" +
                 "В пятницу Вы будете по уши погружены в работу, но зато выходные обещают получиться для Вас исключительно безмятежными и приятными. В воскресенье посвятите все свои силы и внимание какому-нибудь ";
         Zodiac zodiac = new Zodiac("Овен", "Март 21 - Апрель 20", infoItems, R.drawable.ic_aries);
-            zodiacList.add(zodiac);
+        zodiacList.add(zodiac);
 
         zAdapter.notifyDataSetChanged();
 

@@ -1,5 +1,6 @@
 package app.sungi.horoscope.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -21,23 +22,28 @@ import app.sungi.horoscope.fragment_sign.TabFragmentYear;
 public class OneSignActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    Intent intent;
+    static String SELECTED_ZODIAC_SIGN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_sign);
 
+        intent = getIntent();
+        SELECTED_ZODIAC_SIGN = intent.getStringExtra("SELECTED_ZODIAC_SIGN");
+
         setupToolbar();
 
         setupViewPager();
 
         setupCollapsingToolbar();
+
     }
 
     private void setupCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(
                 R.id.collapse_toolbar);
-
         collapsingToolbar.setTitleEnabled(false);
     }
 
@@ -53,16 +59,19 @@ public class OneSignActivity extends AppCompatActivity {
     private void setupToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Horoscope");
+        getSupportActionBar().setTitle("Гороскоп");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         OneSignActivity.ViewPagerAdapter adapter = new OneSignActivity.ViewPagerAdapter(getSupportFragmentManager());
+
+
         adapter.addFrag(new TabFragmentWeek(), "На неделю");
         adapter.addFrag(new TabFragmentMonth(), "На месяц");
         adapter.addFrag(new TabFragmentYear(), "На год");
 
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
     }
 
@@ -87,6 +96,9 @@ public class OneSignActivity extends AppCompatActivity {
         }
 
         public void addFrag(Fragment fragment, String title) {
+            Bundle bundle = new Bundle();
+            bundle.putString("SIGN", OneSignActivity.SELECTED_ZODIAC_SIGN);
+            fragment.setArguments(bundle);
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }

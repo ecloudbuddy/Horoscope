@@ -19,12 +19,7 @@ public class Zodiac {
         this.info = info;
         this.icon = icon;
     }
-    public Zodiac(int name1, int date1, String info, int icon) {
-        this.name1 = name1;
-        this.date1 = date1;
-        this.info = info;
-        this.icon = icon;
-    }
+
 
     public String getSignName() {
         return name;

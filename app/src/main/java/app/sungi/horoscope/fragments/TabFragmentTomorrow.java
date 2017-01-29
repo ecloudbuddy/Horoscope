@@ -27,6 +27,7 @@ import app.sungi.horoscope.activities.OneSignActivity;
 
 public class TabFragmentTomorrow extends Fragment {
 
+    private static final String LOG_TAG = "myLogsFragment";
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
 
@@ -66,19 +67,20 @@ public class TabFragmentTomorrow extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.ClickListener() {
+
             @Override
             public void onClick(View view, int position) {
                 Zodiac zodiac = zodiacList.get(position);
-                Toast.makeText(getActivity(), zodiac.getSignName() + " is selected successfully", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(getActivity(), OneSignActivity.class);
+                intent.putExtra("SELECTED_ZODIAC_SIGN", zodiac.getSignName());
                 startActivity(intent);
 
             }
 
             @Override
             public void onLongClick(View view, int position) {
-
+               Zodiac zodiac = zodiacList.get(position);
+                Toast.makeText(getActivity(), zodiac.getSignName() + " is selected successfully", Toast.LENGTH_SHORT).show();
             }
         }));
 

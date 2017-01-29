@@ -1,4 +1,5 @@
 package app.sungi.horoscope.activities;
+
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Horoscope");
+        getSupportActionBar().setTitle("Гороскоп");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFrag(new TabFragmentYesterday(), "На вчера");
         adapter.addFrag(new TabFragmentToday(), "На сегодня");
         adapter.addFrag(new TabFragmentTomorrow(), "На завтра");
-
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
     }
 

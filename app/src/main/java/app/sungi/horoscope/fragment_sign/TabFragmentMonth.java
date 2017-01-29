@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,15 @@ public class TabFragmentMonth extends Fragment {
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
 
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        String signName = bundle.getString("SIGN");
+        Log.d("myLogssssssssssssss", signName);
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_list_rv);
@@ -41,7 +50,7 @@ public class TabFragmentMonth extends Fragment {
     }
 
     private void prepareZodiacData() {
-        String infoItems ="Какова самая недостижимая цель, какую Вы можете себе представить? Дело в том, что 1-го и 2-го числа для Вас не будет ничего невозможного. Если Вы поставите перед собой по-настоящему высокую планку и приложите усилия, чтобы ее достичь, то у Вас будут все шансы это сделать.\n" +
+        String infoItems = "Какова самая недостижимая цель, какую Вы можете себе представить? Дело в том, что 1-го и 2-го числа для Вас не будет ничего невозможного. Если Вы поставите перед собой по-настоящему высокую планку и приложите усилия, чтобы ее достичь, то у Вас будут все шансы это сделать.\n" +
                 "\n" +
                 "7-го и 8-го числа все Ваши мысли будут посвящены финансовым вопросам. Вам удастся заметно повысить свой доход и сделать ряд довольно грамотных вложений. А если в Вашем распоряжении не будет достаточного количества свободных средств, то постарайтесь взять их в долг. В любом случае разработайте подробный бизнес-план, чтобы в нужный момент Вы могли бы сразу же приступить к его реализации.\n" +
                 "\n" +
