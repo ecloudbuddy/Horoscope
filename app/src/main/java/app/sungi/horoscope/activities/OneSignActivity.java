@@ -76,6 +76,8 @@ public class OneSignActivity extends AppCompatActivity {
     }
 
 
+
+
     static class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();

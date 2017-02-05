@@ -8,10 +8,6 @@ public class Zodiac {
 
     private String name, date, info;
     private int icon;
-    private int name1, date1;
-
-    public Zodiac() {
-    }
 
     public Zodiac(String name, String date, String info, int icon) {
         this.name = name;

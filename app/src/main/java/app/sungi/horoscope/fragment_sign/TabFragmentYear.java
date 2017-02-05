@@ -1,5 +1,6 @@
 package app.sungi.horoscope.fragment_sign;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +28,17 @@ import app.sungi.horoscope.Zodiac;
  */
 
 public class TabFragmentYear extends Fragment {
-
+    String signName;
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
+    String infoItems;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = this.getArguments();
-        String signName = bundle.getString("SIGN");
+        signName = bundle.getString("SIGN");
         Log.d("myLogssssssssssssss", signName);
+        infoItems = getSignInformationFromWebSite();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,14 +59,94 @@ public class TabFragmentYear extends Fragment {
     }
 
     private void prepareZodiacData() {
-        String infoItems = "Начало 2017 года получится для Вас не самым простым, и в середине января Вам будет трудно обрести твердую почву под ногами. Однако не переживайте, ведь несмотря на то, что у Вас будут какие-то обязанности (вероятно, семейного характера), которые будут самым непосредственным образом конфликтовать с теми событиями, которых Вы так давно ждали, Вы сможете найти компромиссное решение этой дилемме. Нужно лишь немного постараться. Дайте другим людям возможность поделиться с Вами своими идеями, и они могут предложить Вам нечто очень конструктивное.\n" +
-                "\n" +
-                "Начало апреля станет для Вас очень удачной порой перемен. Вы сможете продуктивно поработать над собой и своим образом и заменить негативные мысли на позитивные. Если, конечно, Вы будете готовы приложить к этому должные усилия со своей стороны. К счастью, Вы никогда не боялись сложных задач и с готовностью за нее возьметесь.\n" +
-                "\n" +
-                "Конец декабря станет для Вас полной противоположностью изматывающего начала года. Благодаря влиянию благоприятных Марса и Нептуна Вы сможете без труда добиться осуществления любых Ваших желаний. Все будет само идти к Вам в руки, но, несмотря на столь явную благосклонность судьбы, Вам не стоит принимать свою удачу как должное.";
-        Zodiac zodiac = new Zodiac("Овен", "Март 21 - Апрель 20", infoItems, R.drawable.ic_aries);
+        Zodiac zodiac = new Zodiac(signName, "...", infoItems, R.drawable.ic_favorite);
         zodiacList.add(zodiac);
         zAdapter.notifyDataSetChanged();
+    }
+
+    String getSignInformationFromWebSite() {
+        String webSite = null;
+        switch (signName) {
+            case "Овен":
+                webSite = "http://orakul.com/horoscope/astrologic/general/aries/year.html";
+                break;
+            case "Телец":
+                webSite = "http://orakul.com/horoscope/astrologic/general/taurus/year.html";
+                break;
+            case "Близнецы":
+                webSite = "http://orakul.com/horoscope/astrologic/general/gemini/year.html";
+                break;
+            case "Рак":
+                webSite = "http://orakul.com/horoscope/astrologic/general/cancer/year.html";
+                break;
+            case "Лев":
+                webSite = "http://orakul.com/horoscope/astrologic/general/lion/year.html";
+                break;
+            case "Дева":
+                webSite = "http://orakul.com/horoscope/astrologic/general/virgo/year.html";
+                break;
+            case "Весы":
+                webSite = "http://orakul.com/horoscope/astrologic/general/libra/year.html";
+                break;
+            case "Скорпион":
+                webSite = "http://orakul.com/horoscope/astrologic/general/scorpio/year.html";
+                break;
+            case "Стрелец":
+                webSite = "http://orakul.com/horoscope/astrologic/general/sagittarius/year.html";
+                break;
+            case "Козерор":
+                webSite = "http://orakul.com/horoscope/astrologic/general/capricorn/year.html";
+                break;
+            case "Водолей":
+                webSite = "http://orakul.com/horoscope/astrologic/general/aquarius/year.html";
+                break;
+            case "Рыбы":
+                webSite = "http://orakul.com/horoscope/astrologic/general/pisces/year.html";
+                break;
+
+        }
+
+        return ParsingWebPage.getSignInformation(webSite);
+    }
+
+    public static class ParsingWebPage {
+
+
+        static String signInfo;
+        static String web;
+
+        public static String getSignInformation(String SignURL) {
+            web = SignURL;
+            ParsingTask parsingTask = new ParsingTask();
+            parsingTask.execute();
+            return signInfo;
+        }
+
+        public static class ParsingTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... urls) {
+                Document doc = null;
+
+                try {
+                    doc = Jsoup.connect(web).get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Elements newsHeadlines = null;
+                if (doc != null) {
+                    newsHeadlines = doc.select(".horoBlock");
+                }
+                if (newsHeadlines != null) {
+                    signInfo = newsHeadlines.text();
+                }
+                Log.d("myLogsssssss", signInfo);
+                return null;
+            }
+
+
+        }
     }
 }
 

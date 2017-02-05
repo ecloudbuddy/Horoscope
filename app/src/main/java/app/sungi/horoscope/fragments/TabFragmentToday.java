@@ -27,7 +27,6 @@ import app.sungi.horoscope.activities.OneSignActivity;
 
 public class TabFragmentToday extends Fragment {
 
-    private static final String LOG_TAG = "myLogsFragment";
     private List<Zodiac> zodiacList = new ArrayList<>();
     ListAdapter zAdapter;
 
@@ -55,7 +54,6 @@ public class TabFragmentToday extends Fragment {
     String[] infoItems = {aries, taurus, gemini, cancer, leo, virgo, libra, scorpio, sagittarius, capricorn, aquarius, pisces};
     int[] iconItems = {R.drawable.ic_aries, R.drawable.ic_taurus, R.drawable.ic_gemini, R.drawable.ic_cancer, R.drawable.ic_leo, R.drawable.ic_virgo, R.drawable.ic_libra, R.drawable.ic_scorpio, R.drawable.ic_sagittarius, R.drawable.ic_capricornus, R.drawable.ic_aquarius, R.drawable.ic_pisces};
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment, container, false);
@@ -79,7 +77,7 @@ public class TabFragmentToday extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
-               Zodiac zodiac = zodiacList.get(position);
+                Zodiac zodiac = zodiacList.get(position);
                 Toast.makeText(getActivity(), zodiac.getSignName() + " is selected successfully", Toast.LENGTH_SHORT).show();
             }
         }));
@@ -101,9 +99,7 @@ public class TabFragmentToday extends Fragment {
 
     }
 
-    public interface ClickListener {
-        void onClick(View view, int position);
 
-        void onLongClick(View view, int position);
-    }
 }
+
+
